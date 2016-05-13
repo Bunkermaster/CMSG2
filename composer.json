@@ -1,0 +1,16 @@
+{
+  "name": "hetic/exocmsg2",
+  "authors": [
+    {
+      "name": "Ikimasoft",
+      "email": "yann@ikimasoft.fr"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Controller\\": "Controller/",
+      "Model\\": "Model/"
+    }
+  }
+}
