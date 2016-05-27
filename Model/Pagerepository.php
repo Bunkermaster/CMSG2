@@ -38,4 +38,21 @@ class PageRepository
         $stmt->execute();
         return $stmt->fetchObject();
     }
+
+    /**
+     * @return array liste des slugs et titles de toutes les pages
+     */
+    public function findAll()
+    {
+        $sql = "
+        SELECT 
+          `slug`, 
+          `title`
+        FROM 
+          `page` 
+        ";
+        $stmt = $this->PDO->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_OBJ);
+    }
 }

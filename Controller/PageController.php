@@ -71,8 +71,8 @@ class PageController
         } else {
             $slug = 'teletubbies';
         }
-        // recuperation de la navigation
-        $nav = $this->getNav();
+        // recuperation de la navigation basee sur le slug courant
+        $nav = $this->getNav($slug);
         // recuperation des donnees de la page demandee
         $page = $this->repository->getSlug($slug);
         // si les donnees sont false, pas de page correspondant
@@ -89,12 +89,19 @@ class PageController
 
     /**
      * recuperation de la nav a partir d'une vue
+     * @param string $slug current page slug
      * @return string
      */
-    private function getNav()
+    private function getNav($slug)
     {
         // capture de l'output et placement dans l'output buffer (ob)
         ob_start();
+        $nav = $this->repository->findAll();
+        // evite le bug de foreach sur false si pas de donnees
+        if($nav === false){
+            // je met $nav a tableau vide
+            $nav = [];
+        }
         // inclusion de la vue de nav
         include "View/nav.php";
 
