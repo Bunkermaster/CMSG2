@@ -64,6 +64,8 @@ class PageController
      */
     public function listeAction()
     {
+        $data = $this->repository->findAll();
+        include "View/admin/pageListe.php";
     }
 
     /**
