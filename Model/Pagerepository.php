@@ -46,6 +46,7 @@ class PageRepository
     {
         $sql = "
         SELECT 
+          `id`, 
           `slug`, 
           `title`
         FROM 
