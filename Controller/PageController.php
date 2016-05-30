@@ -57,6 +57,15 @@ class PageController
      */
     public function detailsAction()
     {
+        // recuperation du param 'id' dans l'url
+        if(!isset($_GET['id'])){
+            throw new \Exception('Merci de mettre une \'id\' dans l\'url');
+        }
+        $id = $_GET['id'];
+        // recuperation des donnees de id
+        $data = $this->repository->findById($id);
+        // affichage de la vue de details
+        require "View/admin/pageDetails.php";
     }
 
     /**

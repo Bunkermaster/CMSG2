@@ -11,6 +11,14 @@ switch ($action) {
     case 'ajouter':
         break;
 
+    case 'details':
+        try{
+            $page->detailsAction();
+        } catch (\Exception $e){
+            die($e->getMessage());
+        }
+        break;
+
     case 'lister':
     default:
         $page->listeAction();

@@ -20,7 +20,7 @@ class PageRepository
     }
 
     /**
-     * @param int $id
+     * @param int $slug
      */
     public function getSlug($slug)
     {
@@ -35,6 +35,28 @@ class PageRepository
         ";
         $stmt = $this->PDO->prepare($sql);
         $stmt->bindParam(':slug', $slug);
+        $stmt->execute();
+        return $stmt->fetchObject();
+    }
+
+    /**
+     * @param int $id
+     */
+    public function findById($id)
+    {
+        $sql = "
+        SELECT 
+          `id`,
+          `slug`, 
+          `body`, 
+          `title`
+        FROM 
+          `page` 
+        WHERE 
+          `id` = :id
+        ";
+        $stmt = $this->PDO->prepare($sql);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetchObject();
     }
